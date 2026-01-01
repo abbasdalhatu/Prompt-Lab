@@ -1,15 +1,8 @@
 import { GoogleGenAI } from "@google/genai";
 
-// Ensure API key is present
-const apiKey = process.env.API_KEY || '';
-
-const ai = new GoogleGenAI({ apiKey });
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const generatePerfectPrompt = async (userInput: string): Promise<string> => {
-  if (!apiKey) {
-    throw new Error("API Key not found in environment variables.");
-  }
-
   const systemPrompt = `You are an expert prompt engineer. Transform the user's request into a highly effective prompt using the RCCF Formula (Role, Context, Command, Format).
 
   1. Role: Assign a specific, expert persona (e.g., "Act as a Senior Physicist").
